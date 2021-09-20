@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="action_quizFragment_to_wonFragment" type="id" />
+    <item name="action_quizFragment_to_overFragment" type="id" />
+    <item name="action_welcomeFragment_to_quizFragment" type="id" />
+    <item name="action_wonFragment_to_welcomeFragment" type="id" />
+</resources>

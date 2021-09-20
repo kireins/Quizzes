@@ -1,131 +1,93 @@
-package com.kirei.quizzes
-
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-
+import com.kirei.quizzes.Quiz
+import com.kirei.quizzes.R
+import com.kirei.quizzes.databinding.FragmentQuizBinding
+import com.kirei.quizzes.getListQuiz
 
 class QuizFragment : Fragment() {
-
-    private val questions: MutableList<Quiz> = mutableListOf(
-        Quiz(
-            text = "What is Android Jetpack?",
-            answers = listOf("All of these", "Tools", "Documentation", "Libraries")
-        ),
-        Quiz(
-            text = "What is the base class for layouts?",
-            answers = listOf("ViewGroup", "ViewSet", "ViewCollection", "ViewRoot")
-        ),
-        Quiz(
-            text = "What layout do you use for complex screens?",
-            answers = listOf("ConstraintLayout", "GridLayout", "LinearLayout", "FrameLayout")
-        ),
-        Quiz(
-            text = "What do you use to push structured data into a layout?",
-            answers = listOf("Data binding", "Data pushing", "Set text", "An OnClick method")
-        ),
-        Quiz(
-            text = "What method do you use to inflate layouts in fragments?",
-            answers = listOf(
-                "onCreateView()",
-                "onActivityCreated()",
-                "onCreateLayout()",
-                "onInflateLayout()"
-            )
-        ),
-        Quiz(
-            text = "What's the build system for Android?",
-            answers = listOf("Gradle", "Graddle", "Grodle", "Groyle")
-        ),
-        Quiz(
-            text = "Which class do you use to create a vector drawable?",
-            answers = listOf(
-                "VectorDrawable",
-                "AndroidVectorDrawable",
-                "DrawableVector",
-                "AndroidVector"
-            )
-        ),
-        Quiz(
-            text = "Which one of these is an Android navigation component?",
-            answers = listOf("NavController", "NavCentral", "NavMaster", "NavSwitcher")
-        ),
-        Quiz(
-            text = "Which XML element lets you register an activity with the launcher activity?",
-            answers = listOf("intent-filter", "app-registry", "launcher-registry", "app-launcher")
-        ),
-        Quiz(
-            text = "What do you use to mark a layout for data binding?",
-            answers = listOf("<layout>", "<binding>", "<data-binding>", "<dbinding>")
-        )
-    )
+    private val questions = getListQuiz()
     private var questionIndex = 0
-    lateinit var  currentQuestions : Quiz
+    private val numberIndicatorQuestion = Math.min((questions.size + 1) / 2, 5)
+    lateinit var currentQuestion: Quiz
     lateinit var answers: MutableList<String>
-    private val numberIndicatorQuestion = Math.min((questions.size + 1)/ 2, 3)
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val   quizBinding = DataBindingUtil.inflate<FragmentQuizBinding>(
+    ): View {
+        val quizBinding = DataBindingUtil.inflate<FragmentQuizBinding>(
             inflater,
             R.layout.fragment_quiz,
             container,
             false
         )
+
         randomQuestion()
         quizBinding.quiz = this
-        quizBinding.btnSubmit.setOnClickListener {
-                view: View ->
+        quizBinding.btnSubmit.setOnClickListener { view: View ->
             val checkedId = quizBinding.rgQuiz.checkedRadioButtonId
-            if (-1 != checkedId){
+            if (-1 != checkedId) {
                 var answerCorrectPosition = 0
-                when(checkedId){
+                when (checkedId) {
                     R.id.rb_option_2 -> answerCorrectPosition = 1
                     R.id.rb_option_3 -> answerCorrectPosition = 2
                     R.id.rb_option_4 -> answerCorrectPosition = 3
                 }
-                if(answers[answerCorrectPosition] == currentQuestions.answers[0]){
+                if (answers[answerCorrectPosition] == currentQuestion.answers[0]) {
                     questionIndex++
-                    if (questionIndex < numberIndicatorQuestion){
-                        currentQuestions = questions[questionIndex]
+                    updateStep(questions[questionIndex])
+                    if (questionIndex < numberIndicatorQuestion) {
+                        currentQuestion = questions[questionIndex]
                         setNumberQuestion()
                         quizBinding.invalidateAll()
-                    }else{
+                    } else {
                         view.findNavController().navigate(R.id.action_quizFragment_to_wonFragment)
                     }
-                }else{
+                } else {
                     view.findNavController().navigate(R.id.action_quizFragment_to_overFragment)
                 }
             }
         }
+
         return quizBinding.root
+    }
+
+    private fun updateStep(current: Quiz) {
+        val sizes = ArrayList<Quiz>()
+        questions.forEach { question ->
+            question.isCurrent = (question == current)
+            sizes.add(question)
+        }
+        questions.clear()
+        questions.addAll(sizes)
     }
 
 
     private fun randomQuestion() {
         questions.shuffle()
         questionIndex = 0
+        questions[questionIndex].isCurrent = true
         setNumberQuestion()
     }
 
     private fun setNumberQuestion() {
-        currentQuestions = questions[questionIndex]
-        answers = currentQuestions.answers.toMutableList()
+        currentQuestion = questions[questionIndex]
+        answers = currentQuestion.answers.toMutableList()
         answers.shuffle()
 
         (activity as AppCompatActivity).supportActionBar?.title = getString(
-            R.string.title_quezzz,
+            R.string.title_quizzes,
             questionIndex + 1,
             numberIndicatorQuestion
         )
-
     }
 
 }

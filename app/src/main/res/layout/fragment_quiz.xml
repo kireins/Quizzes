@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:elevation="10dp"
-        tools:context=".fragment.QuizFragment">
+        tools:context=".QuizFragment">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_quiz"
@@ -55,7 +55,7 @@
                         android:id="@+id/rb_option_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{quiz.answers[0]}" />
+                        android:text="@{quiz.benar[0]}" />
 
                     <RadioButton
                         android:id="@+id/rb_option_2"
