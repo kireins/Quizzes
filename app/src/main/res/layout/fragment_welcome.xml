@@ -5,7 +5,7 @@
     android:id="@+id/cl_welcome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.WelcomeFragment">
+    tools:context=".WelcomeFragment">
 
     <TextView
         android:id="@+id/tv_welcome"
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="Welcome to"
+        android:text="@string/welcome_to"
         android:textColor="@color/black"
         android:textSize="40sp"
         android:textStyle="bold"
@@ -23,9 +23,9 @@
 
     <ImageView
         android:id="@+id/iv_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="132dp"
+        android:layout_width="250dp"
+        android:layout_height="312dp"
+        android:layout_marginTop="40dp"
         android:src="@drawable/icon"
         app:layout_constraintEnd_toEndOf="@+id/tv_welcome"
         app:layout_constraintStart_toStartOf="@+id/tv_welcome"
@@ -35,13 +35,23 @@
         android:id="@+id/btn_start"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/button_shape_round"
-        android:text="Start"
+        android:text="@string/start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/iv_icon"
-        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="@+id/iv_icon"
         app:layout_constraintTop_toBottomOf="@+id/iv_icon"
-        app:layout_constraintVertical_bias="0.475" />
+        app:layout_constraintVertical_bias="0.383" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quizzes"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/iv_icon"
+        app:layout_constraintTop_toBottomOf="@+id/tv_welcome"
+        app:layout_constraintVertical_bias="0.523"
+        tools:layout_editor_absoluteX="130dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

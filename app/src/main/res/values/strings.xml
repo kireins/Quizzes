@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Quezzz</string>
+    <string name="app_name">Quizzes</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -10,8 +10,8 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="name">Veronica Putri</string>
-    <string name="level">Pemula</string>
+    <string name="name">Kirei Najwa Shafira</string>
+    <string name="level">Beginner</string>
     <string name="rules">Rules</string>
     <string name="about">About</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -21,6 +21,15 @@
     <string name="option_2">Option 2</string>
     <string name="option_3">Option 3</string>
     <string name="option_4">Option</string>
-    <string name="title_quezzz">Quezzz (%1$d/%2$d)</string>
+    <string name="title_quizzes">Quizzes (%1$d/%2$d)</string>
     <string name="submit">Submit</string>
+    <string name="yippie_you_won">Yippie!!! You won!!</string>
+    <string name="dayym_shawty_you_smart">Dayym shawty, you smart!</string>
+    <string name="finish">Finish</string>
+    <string name="welcome_to">Welcome to</string>
+    <string name="start">Start</string>
+    <string name="oh_nooo">Oh nooo!!</string>
+    <string name="maybe_next_time">Maybe next time..?</string>
+    <string name="try_again">Try Again</string>
+    <string name="hello_welcome_to_quizzes_na_trivia_quiz_app_to_play_with_your_friends_d">Hello! Welcome to Quizzes. \nA trivia quiz app to play with your friends :D</string>
 </resources>

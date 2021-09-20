@@ -6,7 +6,7 @@
     <data>
         <variable
             name="quiz"
-            type="com.veronica.idn.quezzz.fragment.QuizFragment" />
+            type="com.kirei.quizzes.QuizFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
